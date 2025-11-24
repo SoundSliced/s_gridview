@@ -139,7 +139,7 @@ class _ExampleHomeState extends State<ExampleHome> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: MyGridView(
+              child: SGridView(
                 controller: _controller,
                 crossAxisItemCount: _crossAxis,
                 mainAxisDirection: _direction,

@@ -7,7 +7,7 @@
 * Version 1.0.0
 
 ### Added
-- Public `MyGridView` widget with customizable cross-axis item count and layout
+- Public `SGridView` widget with customizable cross-axis item count and layout
 - Index-based scrolling using `IndexedScrollController` (via `indexscroll_listview_builder`)
 - Optional scroll indicators when more rows are present for improved UX
 - Support for custom padding, scroll controller injection, and automatic scroll-to-index

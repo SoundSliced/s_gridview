@@ -11,13 +11,13 @@ import 'package:soundsliced_dart_extensions/soundsliced_dart_extensions.dart';
 /// Typical usage:
 ///
 /// ```dart
-/// MyGridView(
+/// SGridView(
 ///   crossAxisItemCount: 3,
 ///   children: myTiles,
 ///   controller: myController,
 /// )
 /// ```
-class MyGridView extends StatefulWidget {
+class SGridView extends StatefulWidget {
   /// Number of children to place on the cross axis (columns for a vertical
   /// layout, rows for a horizontal layout). Must be greater than zero.
   final int crossAxisItemCount;
@@ -36,7 +36,7 @@ class MyGridView extends StatefulWidget {
   final EdgeInsetsGeometry itemPadding;
 
   /// External controller used for programmatic index-based scrolling. If not
-  /// provided, `MyGridView` will create and manage a controller internally.
+  /// provided, `SGridView` will create and manage a controller internally.
   final IndexedScrollController? controller;
 
   /// Whether to show the simple top/bottom (or left/right for horizontal)
@@ -52,8 +52,8 @@ class MyGridView extends StatefulWidget {
   /// corresponding row and instructs the inner list to scroll to that row.
   final int? autoScrollToIndex;
 
-  /// Creates a [MyGridView].
-  const MyGridView({
+  /// Creates a [SGridView].
+  const SGridView({
     super.key,
     this.crossAxisItemCount = 2,
     required this.children,
@@ -67,10 +67,10 @@ class MyGridView extends StatefulWidget {
             'crossAxisItemCount must be greater than zero');
 
   @override
-  State<MyGridView> createState() => _MyGridViewState();
+  State<SGridView> createState() => _SGridViewState();
 }
 
-class _MyGridViewState extends State<MyGridView> {
+class _SGridViewState extends State<SGridView> {
   late IndexedScrollController _scrollController;
   late bool _ownsController;
   bool _showTopIndicator = false;
@@ -90,7 +90,7 @@ class _MyGridViewState extends State<MyGridView> {
   }
 
   @override
-  void didUpdateWidget(MyGridView oldWidget) {
+  void didUpdateWidget(SGridView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     // Handle controller changes

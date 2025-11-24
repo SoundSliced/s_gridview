@@ -4,7 +4,7 @@ import 'package:indexscroll_listview_builder/indexscroll_listview_builder.dart';
 import 'package:s_gridview/s_gridview.dart';
 
 void main() {
-  testWidgets('MyGridView builds and shows items', (WidgetTester tester) async {
+  testWidgets('SGridView builds and shows items', (WidgetTester tester) async {
     final items = List.generate(
       6,
       (i) => Container(
@@ -20,7 +20,7 @@ void main() {
         home: Scaffold(
           body: SizedBox(
             height: 400,
-            child: MyGridView(
+            child: SGridView(
               crossAxisItemCount: 2,
               itemPadding: const EdgeInsets.all(4),
               children: items,
@@ -56,7 +56,7 @@ void main() {
         home: Scaffold(
           body: SizedBox(
             height: 400,
-            child: MyGridView(
+            child: SGridView(
               controller: controller,
               crossAxisItemCount: crossAxis,
               itemPadding: const EdgeInsets.all(4),
@@ -112,7 +112,7 @@ void main() {
         home: Scaffold(
           body: SizedBox(
             height: 400,
-            child: MyGridView(
+            child: SGridView(
               controller: controller,
               mainAxisDirection: Axis.horizontal,
               crossAxisItemCount: crossAxis,
