@@ -1,3 +1,6 @@
+## 1.0.2
+- `README.md` updated 
+
 ## 1.0.1
 
 - Added detailed documentation, README polish, and an interactive example that demonstrates orientation changes, indicator toggles, auto-scroll, and programmatic controller usage.

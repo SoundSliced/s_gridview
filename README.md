@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  s_gridview: ^1.0.0
+  s_gridview: ^1.0.2
 ```
 
 For local development, point to the package path:
