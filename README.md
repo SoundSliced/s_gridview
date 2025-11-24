@@ -58,27 +58,26 @@ class _ExampleState extends State<Example> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
               children: [
                 ElevatedButton(
                   onPressed: () => setState(() => _crossAxisItemCount = (_crossAxisItemCount % 5) + 1),
                   child: Text('Columns: $_crossAxisItemCount'),
                 ),
-                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: () => setState(() => _direction = _direction == Axis.vertical ? Axis.horizontal : Axis.vertical),
-                  child: Text(_direction == Axis.vertical ? 'Vertical' : 'Horizontal'),
+                  child: Text('Switch to ${_direction == Axis.vertical ? 'Horizontal' : 'Vertical'}'),
                 ),
-                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: () => setState(() => _showScrollIndicators = !_showScrollIndicators),
-                  child: Text(_showScrollIndicators ? 'Hide Indicators' : 'Show Indicators'),
+                  child: Text(_showScrollIndicators ? 'Hide indicators' : 'Show indicators'),
                 ),
-                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: () async {
                     // Programmatic scroll via controller
-                    await _controller.scrollToIndex(20, alignmentOverride: 0.3);
+                    await _controller.scrollToIndex(20, alignmentOverride: 0.35);
                   },
                   child: const Text('Scroll to #21'),
                 ),

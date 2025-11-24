@@ -74,7 +74,7 @@ void main() {
     expect(find.byIcon(Icons.keyboard_arrow_down), findsOneWidget);
     expect(find.byIcon(Icons.keyboard_arrow_up), findsNothing);
 
-    // Scroll to bottom
+    // Scroll to bottom (use jumpTo because `scrollToIndex` can hang in widget tests).
     await tester.runAsync(() async {
       controller.controller
           .jumpTo(controller.controller.position.maxScrollExtent);

@@ -1,6 +1,8 @@
 ## 1.0.1
 
-* Version 1.0.1
+- Added detailed documentation, README polish, and an interactive example that demonstrates orientation changes, indicator toggles, auto-scroll, and programmatic controller usage.
+- Documented the exported API so pub.dev recognizes the library, class, constructor, and key setters.
+- Stabilized widget tests by executing `jumpTo` manually instead of awaiting `scrollToIndex`, and noted the rationale in the test comments.
 
 ## 1.0.0
 
