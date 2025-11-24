@@ -3,15 +3,56 @@ import 'package:flutter/material.dart';
 import 'package:indexscroll_listview_builder/indexscroll_listview_builder.dart';
 import 'package:soundsliced_dart_extensions/soundsliced_dart_extensions.dart';
 
+/// A grid-like, scrollable widget that lays out arbitrary child widgets in
+/// rows (or columns when horizontal) with a configurable number of items per
+/// cross-axis. The widget provides optional index-based auto-scrolling and
+/// simple visual scroll indicators.
+///
+/// Typical usage:
+///
+/// ```dart
+/// MyGridView(
+///   crossAxisItemCount: 3,
+///   children: myTiles,
+///   controller: myController,
+/// )
+/// ```
 class MyGridView extends StatefulWidget {
+  /// Number of children to place on the cross axis (columns for a vertical
+  /// layout, rows for a horizontal layout). Must be greater than zero.
   final int crossAxisItemCount;
+
+  /// The list of widgets displayed by the grid. Widgets are placed in order
+  /// and split into rows/columns according to [crossAxisItemCount]. This list
+  /// must not be null.
   final List<Widget> children;
+
+  /// The main scroll direction of the grid. Defaults to [Axis.vertical]. If
+  /// set to [Axis.horizontal] the grid will scroll horizontally and the small
+  /// visual indicators will appear on the left/right edges.
   final Axis mainAxisDirection;
+
+  /// Padding to apply around each child element.
   final EdgeInsetsGeometry itemPadding;
+
+  /// External controller used for programmatic index-based scrolling. If not
+  /// provided, `MyGridView` will create and manage a controller internally.
   final IndexedScrollController? controller;
+
+  /// Whether to show the simple top/bottom (or left/right for horizontal)
+  /// scroll indicators. Defaults to `true`.
   final bool showScrollIndicators;
+
+  /// Color used for the gradient and icon of the scroll indicators. If null
+  /// a sensible default (yellow) will be used.
   final Color? indicatorColor;
+
+  /// Optional index to auto-scroll to when the widget first builds. The
+  /// value will be clamped to the valid child range; the widget computes the
+  /// corresponding row and instructs the inner list to scroll to that row.
   final int? autoScrollToIndex;
+
+  /// Creates a [MyGridView].
   const MyGridView({
     super.key,
     this.crossAxisItemCount = 2,

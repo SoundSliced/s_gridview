@@ -1,6 +1,12 @@
 # s_gridview Example
 
-This example demonstrates basic usage of the `s_gridview` package.
+This example demonstrates a full-featured usage of the `s_gridview` package. It provides controls to:
+
+- Toggle vertical/horizontal layout
+- Change `crossAxisItemCount` (columns/rows)
+- Toggle the scroll indicators and choose a color
+- Programmatic scrolling using an injected `IndexedScrollController` (the "Scroll to #21" button)
+- Set `autoScrollToIndex` at build-time (and see how out-of-bounds values are clamped)
 
 Run:
 
@@ -9,4 +15,4 @@ cd example && flutter pub get
 flutter run
 ```
 
-The example builds a `MyGridView` with a few colored items and demonstrates the scroll indicators and layout options.
+Open the example app and use the visible controls to exercise all the `s_gridview` features interactively.
