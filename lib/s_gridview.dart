@@ -1,6 +1,4 @@
-/// my_gridview package
-///
-/// This library exports all public APIs for the my_gridview package.
-library my_gridview;
-
+// s_gridview package
+//
+// This file exports all public APIs for the s_gridview package.
 export 'src/s_gridview.dart';
