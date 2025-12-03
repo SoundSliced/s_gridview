@@ -2,6 +2,11 @@
 
 A lightweight, customizable grid-like Flutter widget with index-based scrolling and optional scroll indicators.
 
+## 📱 Demo
+
+![IndexScroll ListView Builder Demo](https://raw.githubusercontent.com/SoundSliced/s_gridview/main/example/assets/example.gif)
+
+
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
