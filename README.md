@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  s_gridview: ^1.0.2
+  s_gridview: ^2.0.0
 ```
 
 For local development, point to the package path:
@@ -115,20 +115,89 @@ class _ExampleState extends State<Example> {
 
 ## Features
 
-- Index-based scrolling with `IndexedScrollController` (via `indexscroll_listview_builder`). You can call `controller.scrollToIndex(target, alignmentOverride: 0.0..1.0)` to jump/animate programmatically.
-- Built-in top and bottom (or left/right for horizontal lists) scroll indicators. They appear only when the list is long enough (more than `crossAxisItemCount * 3` children) and when the content is scrollable in that direction.
-- Inject your own `IndexedScrollController` for programmatic control, or let `SGridView` own its controller automatically.
-- `autoScrollToIndex` lets you set an auto-scroll target when the widget first builds — it will be clamped to the valid range automatically.
-- Configure layout with `crossAxisItemCount`, `mainAxisDirection` (vertical/horizontal), and `itemPadding` to control item spacing.
-- Customize indicator color with `indicatorColor` and show/hide with `showScrollIndicators`.
+### 🎯 Interactive Scrolling
+- **Tappable Scroll Indicators**: Tap top/left indicator to scroll backward, bottom/right to scroll forward with smooth animations.
+- **Configurable Scroll Distance**: Control how far each indicator tap scrolls via `indicatorScrollFraction` (10% to 200% of viewport).
+- **Smart Edge Navigation**: `initialIndicatorJump` provides intuitive multi-group jumps when tapping at list start/end positions.
+
+### 🎨 Customization
+- **Index-Based Scrolling**: Full programmatic control with `IndexedScrollController` — call `controller.scrollToIndex(target, alignmentOverride: 0.0..1.0)` to animate to any position.
+- **Visual Indicators**: Built-in gradient indicators appear automatically when content is scrollable (appears when list has > `crossAxisItemCount * 3` children).
+- **Flexible Layout**: Configure `crossAxisItemCount`, `mainAxisDirection` (vertical/horizontal), `itemPadding`, and more.
+- **Custom Styling**: Control indicator color with `indicatorColor` and visibility with `showScrollIndicators`.
+
+### ⚙️ Advanced Features
+- **Auto-Scroll on Build**: Set `autoScrollToIndex` to scroll to a specific position when widget first renders (automatically clamped to valid range).
+- **External Controller Support**: Inject your own `IndexedScrollController` or let `SGridView` manage it automatically.
+- **Manual Scroll Tracking**: Indicators maintain accurate position tracking after user drag/scroll gestures.
+- **Flutter Web Optimized**: Comprehensive lifecycle management prevents hot reload errors.
+
+## Parameters
+
+### Core Layout
+- `crossAxisItemCount` (int, default: 2): Number of items per row (vertical) or column (horizontal).
+- `children` (List<Widget>, required): The list of widgets to display in the grid.
+- `mainAxisDirection` (Axis, default: Axis.vertical): Scroll direction - vertical or horizontal.
+- `itemPadding` (EdgeInsetsGeometry, default: EdgeInsets.zero): Padding around each child widget.
+
+### Scroll Control
+- `controller` (IndexedScrollController?, optional): External controller for programmatic scrolling.
+- `autoScrollToIndex` (int?, optional): Auto-scroll to this index on widget build (clamped to valid range).
+
+### Indicator Configuration
+- `showScrollIndicators` (bool, default: true): Show/hide the scroll indicators.
+- `indicatorColor` (Color?, optional): Custom color for indicators (default: yellow).
+- `indicatorScrollFraction` (double, default: 1.0): Scroll distance per indicator tap as fraction of viewport (0.1 to 2.0).
+  - `0.5` = scroll half a viewport
+  - `1.0` = scroll one full viewport (default)
+  - `2.0` = scroll two viewports
+- `initialIndicatorJump` (int, default: 2): Number of groups to jump when tapping forward at start or backward at end.
 
 ## Example App
 
-The `example/` directory contains an interactive Flutter app showcasing all features, including programmatic scrolling, auto-scroll clamping, controller injection, layout configuration, and indicator customization. Open the `example` folder and run `flutter run`.
+The `example/` directory contains an interactive Flutter app showcasing all features, including:
+- **Interactive Slider**: Adjust scroll distance in real-time (10% to 200% of viewport)
+- **Programmatic Scrolling**: Controller-based navigation
+- **Layout Changes**: Switch between vertical/horizontal, adjust columns
+- **Indicator Customization**: Change colors, toggle visibility
+- **Auto-Scroll Demo**: Out-of-bounds clamping demonstration
+
+Open the `example` folder and run `flutter run`.
 
 ## Quick Code Snippets
 
-Programmatic scrolling with an external controller:
+### Basic Usage with Tappable Indicators
+
+```dart
+SGridView(
+  crossAxisItemCount: 3,
+  children: items,
+  // Indicators are tappable by default!
+  // Tap top to scroll up, bottom to scroll down
+)
+```
+
+### Custom Scroll Distance
+
+```dart
+// User-controlled scroll distance
+double _scrollFraction = 1.0; // 100% of viewport
+
+Slider(
+  value: _scrollFraction,
+  min: 0.1,
+  max: 2.0,
+  onChanged: (value) => setState(() => _scrollFraction = value),
+)
+
+SGridView(
+  crossAxisItemCount: 3,
+  indicatorScrollFraction: _scrollFraction,
+  children: items,
+)
+```
+
+### Programmatic Scrolling with External Controller
 
 ```dart
 final controller = IndexedScrollController();
@@ -143,14 +212,27 @@ SGridView(
 await controller.scrollToIndex(75, alignmentOverride: 0.3);
 ```
 
-Horizontal layout example:
+### Horizontal Layout
 
 ```dart
 SGridView(
   mainAxisDirection: Axis.horizontal,
   crossAxisItemCount: 2,
   children: items,
-);
+  // Indicators appear on left/right for horizontal scrolling
+)
+```
+
+### Custom Indicator Styling
+
+```dart
+SGridView(
+  crossAxisItemCount: 3,
+  indicatorColor: Colors.blue,
+  indicatorScrollFraction: 0.5, // Half viewport per tap
+  initialIndicatorJump: 3, // Jump 3 groups at edges
+  children: items,
+)
 ```
 
 ## License

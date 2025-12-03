@@ -33,6 +33,7 @@ class _ExampleHomeState extends State<ExampleHome> {
   bool _showScrollIndicators = true;
   Color? _indicatorColor = Colors.yellow.shade600;
   int? _autoIndex;
+  double _scrollFraction = 1.0;
   final TextEditingController _textC = TextEditingController();
 
   @override
@@ -103,8 +104,15 @@ class _ExampleHomeState extends State<ExampleHome> {
                 ElevatedButton(
                   onPressed: () async {
                     // Programmatic scroll using the external controller
-                    await _controller.scrollToIndex(20,
-                        alignmentOverride: 0.35);
+                    // Clear autoIndex to avoid conflicts
+                    setState(() => _autoIndex = null);
+                    await _controller.scrollToIndex(
+                      20,
+                      alignmentOverride: 0.35,
+                      itemCount: items.length,
+                    );
+                    // Mounted check after async operation
+                    if (!mounted) return;
                   },
                   child: const Text('Scroll to #21 (via controller)'),
                 ),
@@ -136,6 +144,30 @@ class _ExampleHomeState extends State<ExampleHome> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                const Text('Indicator Scroll Distance:'),
+                Expanded(
+                  child: Slider(
+                    value: _scrollFraction,
+                    min: 0.1,
+                    max: 2.0,
+                    divisions: 19,
+                    label: '${(_scrollFraction * 100).toStringAsFixed(0)}%',
+                    onChanged: (value) {
+                      setState(() => _scrollFraction = value);
+                    },
+                  ),
+                ),
+                Text(
+                  '${(_scrollFraction * 100).toStringAsFixed(0)}% of viewport',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -147,6 +179,7 @@ class _ExampleHomeState extends State<ExampleHome> {
                 autoScrollToIndex: _autoIndex,
                 showScrollIndicators: _showScrollIndicators,
                 indicatorColor: _indicatorColor,
+                indicatorScrollFraction: _scrollFraction,
                 children: items,
               ),
             ),
