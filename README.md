@@ -13,7 +13,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  s_gridview: ^2.0.1
+  s_gridview: ^3.0.0
 ```
 
 For local development, point to the package path:

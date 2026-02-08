@@ -7,4 +7,4 @@
 /// Export the public API from `src/s_gridview.dart`.
 library;
 
-export 'src/s_gridview.dart';
+export 'package:s_packages/s_packages.dart';
