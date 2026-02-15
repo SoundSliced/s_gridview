@@ -2,7 +2,7 @@ name: s_gridview
 description: A lightweight, customizable grid-like Flutter widget with index-based scrolling and tappable scroll indicators
 issue_tracker: https://github.com/SoundSliced/s_gridview/issues
 repository: https://github.com/SoundSliced/s_gridview
-version: 3.0.0
+version: 3.1.0
 homepage: https://github.com/SoundSliced/s_gridview
 license: MIT
 
@@ -13,7 +13,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  s_packages: ^1.1.2
+  s_packages: ^1.4.1
 
 dev_dependencies:
   flutter_test:

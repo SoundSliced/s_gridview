@@ -13,7 +13,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  s_gridview: ^3.0.0
+  s_gridview: ^3.1.0
 ```
 
 For local development, point to the package path:
@@ -144,6 +144,7 @@ class _ExampleState extends State<Example> {
 - `children` (List<Widget>, required): The list of widgets to display in the grid.
 - `mainAxisDirection` (Axis, default: Axis.vertical): Scroll direction - vertical or horizontal.
 - `itemPadding` (EdgeInsetsGeometry, default: EdgeInsets.zero): Padding around each child widget.
+- `emptyStateWidget` (Widget?, optional): Widget to display when the children list is empty.
 
 ### Scroll Control
 - `controller` (IndexedScrollController?, optional): External controller for programmatic scrolling.
